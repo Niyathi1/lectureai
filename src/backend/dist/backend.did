@@ -1,0 +1,73 @@
+type http_request_result = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type http_header = 
+ record {
+   name: text;
+   value: text;
+ };
+type TransformationOutput = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type TransformationInput = 
+ record {
+   context: blob;
+   response: http_request_result;
+ };
+type TranscriptSegment = 
+ record {
+   "text": text;
+   timestamp: nat;
+ };
+type QA = 
+ record {
+   answer: text;
+   createdAt: int;
+   id: text;
+   question: text;
+   timestamp: opt nat;
+ };
+type LectureRecord = 
+ record {
+   createdAt: int;
+   id: LectureId;
+   qa: vec QA;
+   summary: text;
+   tableOfContents: vec Chapter;
+   takeaways: vec text;
+   thumbnailUrl: text;
+   title: text;
+   transcript: vec TranscriptSegment;
+   url: text;
+ };
+type LectureId = text;
+type Chapter = 
+ record {
+   summary: text;
+   timestamp: nat;
+   title: text;
+ };
+service : {
+  addQuestion: (lectureId: LectureId, question: text, timestamp: opt nat) ->
+   (text);
+  askQuestion: (lectureId: LectureId, question: text, timestamp: opt nat) ->
+   (variant {
+      err: text;
+      ok: text;
+    });
+  deleteLecture: (id: LectureId) -> (bool);
+  downloadNotes: (lectureId: LectureId) -> (opt text) query;
+  getLecture: (id: LectureId) -> (opt LectureRecord) query;
+  getLectures: () -> (vec LectureRecord) query;
+  processLecture: (url: text) -> (variant {
+                                    err: text;
+                                    ok: LectureRecord;
+                                  });
+  transform: (input: TransformationInput) -> (TransformationOutput) query;
+}

@@ -1,0 +1,23 @@
+{
+  "overview": "LectureAI turns any YouTube lecture into an interactive study session — with a full transcript, AI-generated summary, clickable timestamps, Q&A, and downloadable notes.",
+  "features": [
+    "YouTube URL input with instant processing",
+    "Full transcript with clickable timestamps",
+    "AI-generated summary with key takeaways and table of contents",
+    "Interactive Q&A tied to lecture moments",
+    "Downloadable notes in PDF, TXT, and Markdown",
+    "Lecture history for revisiting past sessions",
+    "Responsive student-friendly design"
+  ],
+  "category": "productivity",
+  "tags": [
+    "education",
+    "ai",
+    "youtube",
+    "study",
+    "transcript",
+    "notes",
+    "student"
+  ],
+  "last_updated": "2026-04-15T04:40:42.769Z"
+}

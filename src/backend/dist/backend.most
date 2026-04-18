@@ -1,0 +1,43 @@
+// Version: 1.0.0
+type Chapter__483587016 = {summary : Text; timestamp : Nat; title : Text};
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type LectureId__409607303 = Text;
+type LectureId__755070662 = LectureId__409607303;
+type LectureRecord__409880395 =
+  {
+    createdAt : Int;
+    id : LectureId__755070662;
+    qa : [QA__345187510];
+    summary : Text;
+    tableOfContents : [Chapter__483587016];
+    takeaways : [Text];
+    thumbnailUrl : Text;
+    title : Text;
+    transcript : [TranscriptSegment__293316245];
+    url : Text
+  };
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type QA__345187510 =
+  {
+    answer : Text;
+    createdAt : Int;
+    id : Text;
+    question : Text;
+    timestamp : ?Nat
+  };
+type TranscriptSegment__293316245 = {text : Text; timestamp : Nat};
+actor {
+  stable lectureStore :
+    {
+      var root :
+        Node__46230540<LectureId__755070662, LectureRecord__409880395>;
+      var size : Nat__490723111
+    }
+};
